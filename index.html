@@ -1,0 +1,1245 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rivell | Secure. Scalable. Smart IT Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rivell-navy': '#0a1628',
+                        'rivell-dark': '#0f1f38',
+                        'rivell-blue': '#1e3a5f',
+                        'rivell-accent': '#00d4ff',
+                        'rivell-glow': '#00f5ff',
+                        'rivell-gray': '#1a2942',
+                        'rivell-light': '#e8f4fc'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a1628;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a1628;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a5f;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00d4ff;
+        }
+        
+        /* Animated gradient background */
+        .hero-gradient {
+            background: linear-gradient(135deg, #0a1628 0%, #0f1f38 50%, #1e3a5f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 30% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 212, 255, 0.6);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* Grid lines effect */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        /* Glow effects */
+        .glow-text {
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+        }
+        
+        .glow-border {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), inset 0 0 20px rgba(0, 212, 255, 0.1);
+        }
+        
+        .glow-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .glow-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .glow-btn:hover::before {
+            left: 100%;
+        }
+        
+        .glow-btn:hover {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        /* Card hover effects */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(145deg, rgba(30, 58, 95, 0.4), rgba(15, 31, 56, 0.6));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 212, 255, 0.2);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4ff, #00f5ff);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        /* Problem cards */
+        .problem-card {
+            background: linear-gradient(145deg, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.05));
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .problem-card:hover {
+            border-color: rgba(220, 53, 69, 0.5);
+            transform: translateY(-5px);
+        }
+        
+        .solution-card {
+            background: linear-gradient(145deg, rgba(0, 212, 255, 0.1), rgba(0, 212, 255, 0.05));
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .solution-card:hover {
+            border-color: rgba(0, 212, 255, 0.5);
+            transform: translateY(-5px);
+        }
+        
+        /* Testimonial cards */
+        .testimonial-card {
+            background: linear-gradient(145deg, rgba(30, 58, 95, 0.3), rgba(15, 31, 56, 0.5));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+        
+        /* Logo animation */
+        .logo-scroll {
+            animation: scroll 30s linear infinite;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #00f5ff);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Cyber shield animation */
+        .cyber-shield {
+            animation: shieldPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes shieldPulse {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.8)); }
+        }
+        
+        /* Stats counter animation */
+        .stat-number {
+            background: linear-gradient(135deg, #00d4ff, #00f5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Input focus styles */
+        .form-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+        }
+        
+        /* Section transitions */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Badge styling */
+        .cert-badge {
+            background: linear-gradient(145deg, rgba(30, 58, 95, 0.5), rgba(15, 31, 56, 0.7));
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .cert-badge:hover {
+            border-color: rgba(0, 212, 255, 0.5);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-rivell-navy/90 backdrop-blur-lg border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-rivell-accent to-rivell-glow rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-rivell-navy" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.09 5.1 7.63 12 4.18zM4 16.54V9.09l7 3.5v7.45l-7-3.5zm9 3.5v-7.45l7-3.5v7.45l-7 3.5z"/>
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-bold tracking-tight">Rivell</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#services" class="nav-link text-sm font-medium text-white/80 hover:text-white transition">Services</a>
+                    <a href="#solutions" class="nav-link text-sm font-medium text-white/80 hover:text-white transition">Solutions</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-white/80 hover:text-white transition">About</a>
+                    <a href="#testimonials" class="nav-link text-sm font-medium text-white/80 hover:text-white transition">Testimonials</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-white/80 hover:text-white transition">Contact</a>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="tel:+1234567890" class="flex items-center space-x-2 text-sm text-white/80 hover:text-rivell-accent transition">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>(800) 555-RIVELL</span>
+                    </a>
+                    <a href="#assessment" class="glow-btn bg-gradient-to-r from-rivell-accent to-rivell-glow text-rivell-navy px-6 py-2.5 rounded-lg font-semibold text-sm">
+                        Free IT Assessment
+                    </a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button id="mobileMenuBtn" class="lg:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-rivell-dark z-50 lg:hidden">
+            <div class="p-6">
+                <button id="closeMobileMenu" class="absolute top-6 right-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <div class="mt-12 space-y-6">
+                    <a href="#services" class="block text-lg font-medium">Services</a>
+                    <a href="#solutions" class="block text-lg font-medium">Solutions</a>
+                    <a href="#about" class="block text-lg font-medium">About</a>
+                    <a href="#testimonials" class="block text-lg font-medium">Testimonials</a>
+                    <a href="#contact" class="block text-lg font-medium">Contact</a>
+                    <a href="#assessment" class="glow-btn block text-center bg-gradient-to-r from-rivell-accent to-rivell-glow text-rivell-navy px-6 py-3 rounded-lg font-semibold mt-8">
+                        Free IT Assessment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center pt-20 relative">
+        <div class="particles" id="particles"></div>
+        <div class="grid-overlay"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center space-x-2 bg-rivell-blue/30 backdrop-blur border border-rivell-accent/20 rounded-full px-4 py-2">
+                        <span class="w-2 h-2 bg-rivell-accent rounded-full animate-pulse"></span>
+                        <span class="text-sm text-rivell-accent font-medium">SOC 2 Certified • 24/7 Support</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                        <span class="glow-text text-white">Secure.</span>
+                        <span class="glow-text text-white">Scalable.</span>
+                        <br>
+                        <span class="bg-gradient-to-r from-rivell-accent to-rivell-glow bg-clip-text text-transparent">Smart IT Solutions</span>
+                        <br>
+                        <span class="text-white/90">for Modern Businesses</span>
+                    </h1>
+                    
+                    <p class="text-lg text-white/70 max-w-xl">
+                        Managed IT, Cybersecurity, Cloud & VoIP — All under one trusted partner. 
+                        We don't just fix problems; we prevent them.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#assessment" class="glow-btn bg-gradient-to-r from-rivell-accent to-rivell-glow text-rivell-navy px-8 py-4 rounded-xl font-bold text-center inline-flex items-center justify-center space-x-2 group">
+                            <span>Free IT Assessment</span>
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                        <a href="#contact" class="glow-border bg-white/5 backdrop-blur text-white px-8 py-4 rounded-xl font-bold text-center hover:bg-white/10 transition">
+                            Get a Quote
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center space-x-8 pt-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="flex -space-x-2">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Client" class="w-8 h-8 rounded-full border-2 border-rivell-navy">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="Client" class="w-8 h-8 rounded-full border-2 border-rivell-navy">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Client" class="w-8 h-8 rounded-full border-2 border-rivell-navy">
+                            </div>
+                            <span class="text-sm text-white/60">500+ Businesses Trust Us</span>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                            </div>
+                            <span class="text-sm text-white/60 ml-2">4.9/5 on Google</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative hidden lg:block">
+                    <div class="relative z-10">
+                        <!-- Abstract tech visualization -->
+                        <svg class="w-full h-auto cyber-shield" viewBox="0 0 500 500">
+                            <defs>
+                                <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.8"/>
+                                    <stop offset="100%" style="stop-color:#00f5ff;stop-opacity:0.4"/>
+                                </linearGradient>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            
+                            <!-- Outer hexagon -->
+                            <polygon points="250,50 400,150 400,300 250,400 100,300 100,150" 
+                                     fill="none" stroke="url(#shieldGrad)" stroke-width="2" filter="url(#glow)"/>
+                            
+                            <!-- Inner hexagon -->
+                            <polygon points="250,100 350,175 350,275 250,350 150,275 150,175" 
+                                     fill="rgba(0,212,255,0.1)" stroke="url(#shieldGrad)" stroke-width="1"/>
+                            
+                            <!-- Shield icon in center -->
+                            <path d="M250,140 L310,170 L310,240 C310,280 250,320 250,320 C250,320 190,280 190,240 L190,170 Z" 
+                                  fill="rgba(0,212,255,0.2)" stroke="url(#shieldGrad)" stroke-width="2"/>
+                            
+                            <!-- Checkmark -->
+                            <path d="M225,230 L245,250 L280,200" fill="none" stroke="#00f5ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            
+                            <!-- Connection lines -->
+                            <line x1="250" y1="50" x2="250" y2="100" stroke="url(#shieldGrad)" stroke-width="1" opacity="0.5"/>
+                            <line x1="400" y1="150" x2="350" y2="175" stroke="url(#shieldGrad)" stroke-width="1" opacity="0.5"/>
+                            <line x1="400" y1="300" x2="350" y2="275" stroke="url(#shieldGrad)" stroke-width="1" opacity="0.5"/>
+                            <line x1="250" y1="400" x2="250" y2="350" stroke="url(#shieldGrad)" stroke-width="1" opacity="0.5"/>
+                            <line x1="100" y1="300" x2="150" y2="275" stroke="url(#shieldGrad)" stroke-width="1" opacity="0.5"/>
+                            <line x1="100" y1="150" x2="150" y2="175" stroke="url(#shieldGrad)" stroke-width="1" opacity="0.5"/>
+                            
+                            <!-- Corner nodes -->
+                            <circle cx="250" cy="50" r="6" fill="#00d4ff"/>
+                            <circle cx="400" cy="150" r="6" fill="#00d4ff"/>
+                            <circle cx="400" cy="300" r="6" fill="#00d4ff"/>
+                            <circle cx="250" cy="400" r="6" fill="#00d4ff"/>
+                            <circle cx="100" cy="300" r="6" fill="#00d4ff"/>
+                            <circle cx="100" cy="150" r="6" fill="#00d4ff"/>
+                        </svg>
+                    </div>
+                    
+                    <!-- Floating stats cards -->
+                    <div class="absolute top-10 -right-4 bg-rivell-dark/90 backdrop-blur border border-rivell-accent/20 rounded-xl p-4 animate-bounce" style="animation-duration: 3s;">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-green-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-white/60">Threats Blocked</p>
+                                <p class="font-bold text-green-400">2.4M+ Today</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-20 -left-4 bg-rivell-dark/90 backdrop-blur border border-rivell-accent/20 rounded-xl p-4 animate-bounce" style="animation-duration: 4s; animation-delay: 1s;">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-rivell-accent/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-clock text-rivell-accent"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-white/60">Uptime</p>
+                                <p class="font-bold text-rivell-accent">99.99%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
+                <div class="w-1 h-2 bg-rivell-accent rounded-full animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem → Solution Section -->
+    <section id="solutions" class="py-24 bg-rivell-navy relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span class="text-rivell-accent font-semibold text-sm uppercase tracking-wider">The Challenge</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-4 mb-6">IT Problems Are Costing You More Than You Think</h2>
+                <p class="text-white/60 max-w-2xl mx-auto">Most businesses don't realize how much downtime, security gaps, and outdated infrastructure impact their bottom line until it's too late.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Problems -->
+                <div class="space-y-4 fade-in">
+                    <h3 class="text-xl font-bold text-red-400 mb-6 flex items-center">
+                        <i class="fas fa-exclamation-triangle mr-3"></i>
+                        Common IT Pain Points
+                    </h3>
+                    
+                    <div class="problem-card rounded-xl p-5">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-virus text-red-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Cyber Security Threats</h4>
+                                <p class="text-sm text-white/60">60% of small businesses close within 6 months of a cyber attack. Are you protected?</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="problem-card rounded-xl p-5">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-server text-red-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Costly Downtime</h4>
+                                <p class="text-sm text-white/60">Average downtime costs $5,600 per minute. Even small outages add up fast.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="problem-card rounded-xl p-5">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-network-wired text-red-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Outdated Infrastructure</h4>
+                                <p class="text-sm text-white/60">Legacy systems slow your team down and create security vulnerabilities.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="problem-card rounded-xl p-5">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-file-contract text-red-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Compliance Nightmares</h4>
+                                <p class="text-sm text-white/60">HIPAA, PCI-DSS, SOC 2 — Failing an audit can mean massive fines and lost contracts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Solutions -->
+                <div class="space-y-4 fade-in">
+                    <h3 class="text-xl font-bold text-rivell-accent mb-6 flex items-center">
+                        <i class="fas fa-check-circle mr-3"></i>
+                        The Rivell Advantage
+                    </h3>
+                    
+                    <div class="solution-card rounded-xl p-5">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-rivell-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-eye text-rivell-accent text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">24/7 Proactive Monitoring</h4>
+                                <p class="text-sm text-white/60">We catch and fix issues before they impact your business. Sleep easy knowing we're watching.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-card rounded-xl p-5">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-rivell-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-shield-alt text-rivell-accent text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Enterprise-Grade Security</h4>
+                                <p class="text-sm text-white/60">Multi-layered protection including EDR, SIEM, and zero-trust architecture.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-card rounded-xl p-5">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-rivell-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-headset text-rivell-accent text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Expert Support Team</h4>
+                                <p class="text-sm text-white/60">Real humans, not chatbots. Average response time under 15 minutes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-card rounded-xl p-5">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-rivell-accent/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-dollar-sign text-rivell-accent text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Predictable Pricing</h4>
+                                <p class="text-sm text-white/60">Flat-rate managed services. No surprise bills. Budget with confidence.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-24 bg-gradient-to-b from-rivell-navy to-rivell-dark relative overflow-hidden">
+        <div class="absolute inset-0 opacity-30">
+            <div class="grid-overlay"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <span class="text-rivell-accent font-semibold text-sm uppercase tracking-wider">What We Do</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-4 mb-6">Comprehensive IT Solutions</h2>
+                <p class="text-white/60 max-w-2xl mx-auto">From day-to-day IT support to advanced cybersecurity, we've got every aspect of your technology needs covered.</p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service Card 1 -->
+                <div class="service-card rounded-2xl p-6 relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-rivell-accent/20 to-rivell-accent/5 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                            <i class="fas fa-laptop-code text-rivell-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Managed IT Services</h3>
+                        <p class="text-white/60 text-sm mb-6">Complete IT management including help desk, infrastructure monitoring, and strategic planning for your business growth.</p>
+                        <ul class="space-y-2 text-sm text-white/60 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>24/7 Help Desk Support</li>
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>Network Management</li>
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>Virtual CIO Services</li>
+                        </ul>
+                        <a href="#" class="inline-flex items-center text-rivell-accent font-semibold text-sm group-hover:translate-x-2 transition">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card rounded-2xl p-6 relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-rivell-accent/20 to-rivell-accent/5 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                            <i class="fas fa-shield-virus text-rivell-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Cybersecurity Solutions</h3>
+                        <p class="text-white/60 text-sm mb-6">Enterprise-grade security protecting your business from evolving cyber threats with advanced detection and response.</p>
+                        <ul class="space-y-2 text-sm text-white/60 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>Threat Detection & Response</li>
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>Security Awareness Training</li>
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>Compliance Management</li>
+                        </ul>
+                        <a href="#" class="inline-flex items-center text-rivell-accent font-semibold text-sm group-hover:translate-x-2 transition">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card rounded-2xl p-6 relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-rivell-accent/20 to-rivell-accent/5 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                            <i class="fas fa-cloud text-rivell-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Cloud Hosting & Migration</h3>
+                        <p class="text-white/60 text-sm mb-6">Seamless cloud transitions with Azure, AWS, and Microsoft 365 expertise. Scale your business without infrastructure headaches.</p>
+                        <ul class="space-y-2 text-sm text-white/60 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>Cloud Strategy & Planning</li>
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>Microsoft 365 Management</li>
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>Hybrid Cloud Solutions</li>
+                        </ul>
+                        <a href="#" class="inline-flex items-center text-rivell-accent font-semibold text-sm group-hover:translate-x-2 transition">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="service-card rounded-2xl p-6 relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-gradient-to-br from-rivell-accent/20 to-rivell-accent/5 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                            <i class="fas fa-phone-volume text-rivell-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">VoIP & Communications</h3>
+                        <p class="text-white/60 text-sm mb-6">Modern business phone systems that scale with your team. Crystal-clear calls from anywhere, on any device.</p>
+                        <ul class="space-y-2 text-sm text-white/60 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>Cloud Phone Systems</li>
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>Unified Communications</li>
+                            <li class="flex items-center"><i class="fas fa-check text-rivell-accent mr-2 text-xs"></i>Video Conferencing</li>
+                        </ul>
+                        <a href="#" class="inline-flex items-center text-rivell-accent font-semibold text-sm group-hover:translate-x-2 transition">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-rivell-dark relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-rivell-accent/5 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center fade-in">
+                    <div class="stat-number text-4xl sm:text-5xl font-bold mb-2" data-target="500">500+</div>
+                    <p class="text-white/60">Clients Protected</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="stat-number text-4xl sm:text-5xl font-bold mb-2" data-target="99.99">99.99%</div>
+                    <p class="text-white/60">Uptime Guarantee</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="stat-number text-4xl sm:text-5xl font-bold mb-2" data-target="15">15 min</div>
+                    <p class="text-white/60">Avg Response Time</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="stat-number text-4xl sm:text-5xl font-bold mb-2" data-target="2.4">2.4M+</div>
+                    <p class="text-white/60">Threats Blocked Daily</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust & Social Proof -->
+    <section id="testimonials" class="py-24 bg-rivell-navy relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <span class="text-rivell-accent font-semibold text-sm uppercase tracking-wider">Trusted By Industry Leaders</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-4 mb-6">See Why Businesses Choose Rivell</h2>
+            </div>
+            
+            <!-- Client Logos -->
+            <div class="relative mb-16 overflow-hidden">
+                <div class="flex items-center space-x-16 logo-scroll">
+                    <div class="flex-shrink-0 px-6 py-4 bg-white/5 rounded-lg">
+                        <span class="text-xl font-bold text-white/40">TechCorp</span>
+                    </div>
+                    <div class="flex-shrink-0 px-6 py-4 bg-white/5 rounded-lg">
+                        <span class="text-xl font-bold text-white/40">HealthFirst</span>
+                    </div>
+                    <div class="flex-shrink-0 px-6 py-4 bg-white/5 rounded-lg">
+                        <span class="text-xl font-bold text-white/40">FinanceHub</span>
+                    </div>
+                    <div class="flex-shrink-0 px-6 py-4 bg-white/5 rounded-lg">
+                        <span class="text-xl font-bold text-white/40">LegalEdge</span>
+                    </div>
+                    <div class="flex-shrink-0 px-6 py-4 bg-white/5 rounded-lg">
+                        <span class="text-xl font-bold text-white/40">RetailPro</span>
+                    </div>
+                    <div class="flex-shrink-0 px-6 py-4 bg-white/5 rounded-lg">
+                        <span class="text-xl font-bold text-white/40">ManufactureX</span>
+                    </div>
+                    <div class="flex-shrink-0 px-6 py-4 bg-white/5 rounded-lg">
+                        <span class="text-xl font-bold text-white/40">TechCorp</span>
+                    </div>
+                    <div class="flex-shrink-0 px-6 py-4 bg-white/5 rounded-lg">
+                        <span class="text-xl font-bold text-white/40">HealthFirst</span>
+                    </div>
+                    <div class="flex-shrink-0 px-6 py-4 bg-white/5 rounded-lg">
+                        <span class="text-xl font-bold text-white/40">FinanceHub</span>
+                    </div>
+                    <div class="flex-shrink-0 px-6 py-4 bg-white/5 rounded-lg">
+                        <span class="text-xl font-bold text-white/40">LegalEdge</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Google Reviews Banner -->
+            <div class="flex justify-center mb-12 fade-in">
+                <div class="inline-flex items-center space-x-4 bg-rivell-dark/50 backdrop-blur border border-white/10 rounded-full px-8 py-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="h-6">
+                    <div class="flex items-center space-x-1 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="text-white font-semibold">4.9/5</span>
+                    <span class="text-white/60">(127 Reviews)</span>
+                </div>
+            </div>
+            
+            <!-- Testimonials Grid -->
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="testimonial-card rounded-2xl p-6 fade-in">
+                    <div class="flex items-center space-x-1 text-yellow-400 mb-4">
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                    </div>
+                    <p class="text-white/80 mb-6">"Rivell transformed our IT infrastructure. We went from constant firefighting to proactive management. Our team is more productive than ever, and we haven't had a single security incident since partnering with them."</p>
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=50&h=50&fit=crop&crop=face" alt="Client" class="w-12 h-12 rounded-full">
+                        <div>
+                            <p class="font-semibold">Michael Chen</p>
+                            <p class="text-sm text-white/60">CTO, TechCorp Inc.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card rounded-2xl p-6 fade-in">
+                    <div class="flex items-center space-x-1 text-yellow-400 mb-4">
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                    </div>
+                    <p class="text-white/80 mb-6">"As a healthcare provider, HIPAA compliance is non-negotiable. Rivell not only keeps us compliant but has implemented security measures that give us and our patients peace of mind. Their response time is incredible."</p>
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=50&h=50&fit=crop&crop=face" alt="Client" class="w-12 h-12 rounded-full">
+                        <div>
+                            <p class="font-semibold">Dr. Sarah Williams</p>
+                            <p class="text-sm text-white/60">CEO, HealthFirst Medical</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card rounded-2xl p-6 fade-in">
+                    <div class="flex items-center space-x-1 text-yellow-400 mb-4">
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                        <i class="fas fa-star text-sm"></i>
+                    </div>
+                    <p class="text-white/80 mb-6">"We've reduced our IT costs by 40% while getting better service. The predictable monthly pricing lets us budget effectively, and their team feels like an extension of our own. Best decision we've made."</p>
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" alt="Client" class="w-12 h-12 rounded-full">
+                        <div>
+                            <p class="font-semibold">James Rodriguez</p>
+                            <p class="text-sm text-white/60">IT Director, FinanceHub</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certifications -->
+            <div class="text-center fade-in">
+                <p class="text-white/60 mb-6">Certified & Compliant</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="cert-badge px-6 py-3 rounded-lg flex items-center space-x-2">
+                        <i class="fas fa-certificate text-rivell-accent"></i>
+                        <span class="text-sm font-medium">SOC 2 Type II</span>
+                    </div>
+                    <div class="cert-badge px-6 py-3 rounded-lg flex items-center space-x-2">
+                        <i class="fas fa-certificate text-rivell-accent"></i>
+                        <span class="text-sm font-medium">ISO 27001</span>
+                    </div>
+                    <div class="cert-badge px-6 py-3 rounded-lg flex items-center space-x-2">
+                        <i class="fas fa-certificate text-rivell-accent"></i>
+                        <span class="text-sm font-medium">HIPAA Compliant</span>
+                    </div>
+                    <div class="cert-badge px-6 py-3 rounded-lg flex items-center space-x-2">
+                        <i class="fas fa-certificate text-rivell-accent"></i>
+                        <span class="text-sm font-medium">Microsoft Partner</span>
+                    </div>
+                    <div class="cert-badge px-6 py-3 rounded-lg flex items-center space-x-2">
+                        <i class="fas fa-certificate text-rivell-accent"></i>
+                        <span class="text-sm font-medium">PCI-DSS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Magnet Section -->
+    <section id="assessment" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-rivell-accent/10 via-rivell-dark to-rivell-navy"></div>
+        <div class="absolute inset-0">
+            <div class="grid-overlay opacity-50"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="inline-flex items-center space-x-2 bg-rivell-accent/20 backdrop-blur border border-rivell-accent/30 rounded-full px-4 py-2 mb-6">
+                        <i class="fas fa-gift text-rivell-accent"></i>
+                        <span class="text-sm text-rivell-accent font-medium">Free Resource</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-6">
+                        Get Your Free<br>
+                        <span class="bg-gradient-to-r from-rivell-accent to-rivell-glow bg-clip-text text-transparent">Cybersecurity Readiness</span><br>
+                        Checklist
+                    </h2>
+                    <p class="text-white/70 mb-8">Discover the 27 critical security measures your business needs. This comprehensive checklist is used by our own security experts to evaluate enterprise clients.</p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-rivell-accent/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-rivell-accent text-xs"></i>
+                            </div>
+                            <span class="text-white/80">Network Security Assessment Framework</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-rivell-accent/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-rivell-accent text-xs"></i>
+                            </div>
+                            <span class="text-white/80">Employee Security Training Checklist</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-rivell-accent/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-rivell-accent text-xs"></i>
+                            </div>
+                            <span class="text-white/80">Compliance Requirements Guide</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-rivell-accent/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-rivell-accent text-xs"></i>
+                            </div>
+                            <span class="text-white/80">Incident Response Plan Template</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="fade-in">
+                    <div class="bg-rivell-dark/80 backdrop-blur-lg border border-white/10 rounded-2xl p-8 glow-border">
+                        <h3 class="text-xl font-bold mb-2">Download Your Free Checklist</h3>
+                        <p class="text-white/60 text-sm mb-6">Join 2,000+ IT leaders who've used this checklist to strengthen their security posture.</p>
+                        
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Full Name</label>
+                                <input type="text" placeholder="John Smith" class="form-input w-full bg-rivell-navy/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Business Email</label>
+                                <input type="email" placeholder="john@company.com" class="form-input w-full bg-rivell-navy/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Company Name</label>
+                                <input type="text" placeholder="Acme Corporation" class="form-input w-full bg-rivell-navy/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Company Size</label>
+                                <select class="form-input w-full bg-rivell-navy/50 border border-white/10 rounded-lg px-4 py-3 text-white transition">
+                                    <option value="" class="bg-rivell-dark">Select company size</option>
+                                    <option value="1-10" class="bg-rivell-dark">1-10 employees</option>
+                                    <option value="11-50" class="bg-rivell-dark">11-50 employees</option>
+                                    <option value="51-200" class="bg-rivell-dark">51-200 employees</option>
+                                    <option value="201-500" class="bg-rivell-dark">201-500 employees</option>
+                                    <option value="500+" class="bg-rivell-dark">500+ employees</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="glow-btn w-full bg-gradient-to-r from-rivell-accent to-rivell-glow text-rivell-navy py-4 rounded-lg font-bold text-center">
+                                Download Free Checklist
+                            </button>
+                            <p class="text-xs text-white/40 text-center">By submitting, you agree to our Privacy Policy. We'll never spam you.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-20 bg-gradient-to-r from-rivell-blue to-rivell-dark relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMGQ0ZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyek0zNiAyNHYySC0yNHYtMmgxMnpNMzYgMTR2MkgyNHYtMmgxMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center fade-in">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-6">Ready to Transform Your IT?</h2>
+                <p class="text-white/70 max-w-2xl mx-auto mb-8">Schedule your free IT assessment today and discover how Rivell can help you reduce costs, improve security, and scale your business.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact" class="glow-btn bg-gradient-to-r from-rivell-accent to-rivell-glow text-rivell-navy px-8 py-4 rounded-xl font-bold inline-flex items-center justify-center space-x-2">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Schedule Free Assessment</span>
+                    </a>
+                    <a href="tel:+18005557845" class="bg-white/10 backdrop-blur border border-white/20 text-white px-8 py-4 rounded-xl font-bold inline-flex items-center justify-center space-x-2 hover:bg-white/20 transition">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>(800) 555-RIVELL</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-rivell-navy border-t border-white/5 pt-20 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-rivell-accent to-rivell-glow rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-rivell-navy" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.09 5.1 7.63 12 4.18zM4 16.54V9.09l7 3.5v7.45l-7-3.5zm9 3.5v-7.45l7-3.5v7.45l-7 3.5z"/>
+                            </svg>
+                        </div>
+                        <span class="text-2xl font-bold">Rivell</span>
+                    </div>
+                    <p class="text-white/60 text-sm mb-6">Your trusted technology partner for managed IT services and cybersecurity. Protecting and empowering businesses since 2010.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/5 hover:bg-rivell-accent/20 rounded-lg flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in text-white/60 hover:text-rivell-accent"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/5 hover:bg-rivell-accent/20 rounded-lg flex items-center justify-center transition">
+                            <i class="fab fa-twitter text-white/60 hover:text-rivell-accent"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/5 hover:bg-rivell-accent/20 rounded-lg flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f text-white/60 hover:text-rivell-accent"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h4 class="font-bold mb-6">Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">Managed IT Services</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">Cybersecurity Solutions</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">Cloud Hosting & Migration</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">VoIP & Communications</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">IT Consulting</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">Backup & Disaster Recovery</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company -->
+                <div>
+                    <h4 class="font-bold mb-6">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">About Us</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">Our Team</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">Careers</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">Case Studies</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">Blog</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-rivell-accent transition text-sm">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-bold mb-6">Get In Touch</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-rivell-accent mt-1"></i>
+                            <span class="text-white/60 text-sm">123 Technology Drive<br>Suite 400<br>Newark, NJ 07102</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone-alt text-rivell-accent"></i>
+                            <a href="tel:+18005557845" class="text-white/60 hover:text-rivell-accent transition text-sm">(800) 555-RIVELL</a>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-rivell-accent"></i>
+                            <a href="mailto:info@rivell.com" class="text-white/60 hover:text-rivell-accent transition text-sm">info@rivell.com</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-6 p-4 bg-rivell-dark/50 rounded-lg border border-white/5">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <i class="fas fa-headset text-rivell-accent"></i>
+                            <span class="font-semibold text-sm">24/7 Support</span>
+                        </div>
+                        <p class="text-white/60 text-xs">Emergency support available around the clock for all managed clients.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Compliance Bar -->
+            <div class="border-t border-white/5 pt-8 mb-8">
+                <div class="flex flex-wrap justify-center gap-6 text-xs text-white/40">
+                    <span class="flex items-center space-x-2">
+                        <i class="fas fa-shield-alt text-rivell-accent"></i>
+                        <span>SOC 2 Type II Certified</span>
+                    </span>
+                    <span class="flex items-center space-x-2">
+                        <i class="fas fa-lock text-rivell-accent"></i>
+                        <span>ISO 27001 Compliant</span>
+                    </span>
+                    <span class="flex items-center space-x-2">
+                        <i class="fas fa-hospital text-rivell-accent"></i>
+                        <span>HIPAA Compliant</span>
+                    </span>
+                    <span class="flex items-center space-x-2">
+                        <i class="fas fa-credit-card text-rivell-accent"></i>
+                        <span>PCI-DSS Certified</span>
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <p class="text-white/40 text-sm">© 2026 Rivell | All rights reserved | Developed By Al-Mahmud</p>
+                <div class="flex space-x-6 text-sm">
+                    <a href="#" class="text-white/40 hover:text-rivell-accent transition">Privacy Policy</a>
+                    <a href="#" class="text-white/40 hover:text-rivell-accent transition">Terms of Service</a>
+                    <a href="#" class="text-white/40 hover:text-rivell-accent transition">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 15}s`;
+            particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Intersection Observer for fade-in animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        fadeElements.forEach(el => fadeObserver.observe(el));
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Navbar background on scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-rivell-navy/95');
+            } else {
+                nav.classList.remove('bg-rivell-navy/95');
+            }
+        });
+        
+        // Form submission handling
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Add your form submission logic here
+            alert('Thank you! Your checklist is on its way to your inbox.');
+        });
+    </script>
+</body>
+</html>
+```
